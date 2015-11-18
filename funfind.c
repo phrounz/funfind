@@ -36,7 +36,7 @@ int processFile(char* pattern, char* filename, boolean file_is_alone)
   boolean in_quotation_marks = 0;
   boolean in_quotation_marks2 = 0;
   boolean already_found = 0;
-  //boolean do_not_display_return = 0;
+  boolean do_not_display_return = 0;
 
   pattern_length = strlen(pattern);
 
@@ -61,11 +61,15 @@ int processFile(char* pattern, char* filename, boolean file_is_alone)
 
     if (in_function)
     {
-    	//if (do_not_display_return && c=='\n')
-    	//	do_not_display_return = 0;
-    	//else
+#ifdef WIN32
+    	if (do_not_display_return && c=='\n')
+    		do_not_display_return = 0;
+    	else
+#endif
     		printf("%c",c);
-    	//if (c2=='\n') do_not_display_return = 1;
+#ifdef WIN32
+    	if (c2=='\n') do_not_display_return = 1;
+#endif
     }
 
     if (c=='/' && c2=='*' && !in_quotation_marks && !in_quotation_marks2)
