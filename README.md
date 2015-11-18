@@ -29,7 +29,7 @@ Source under [MIT license](./LICENSE).
    # show the processFile function in foo.c or foo.h
    funfind processFile foo.c foo.h  
    
-   # show functions returning void or having parameters with void in it
+   # show functions returning void or having parameters with void or voidOfTheUniverse in it
    funfind void foo.c
    
    # show the main function in foo.c (but only if it matches this pattern)
