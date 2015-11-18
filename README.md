@@ -44,3 +44,5 @@ Source under [MIT license](./LICENSE).
 
 ### Bugs
  * The program has still some troubles with \#ifdef.
+ * I did the code a long time ago (I just recently translated it quickly from french and fixed a bug), 
+ so please be forgiving on the code quality.
