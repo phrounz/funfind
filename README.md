@@ -1,13 +1,12 @@
 ## funfind
 Very simple command-line program displaying the definition or the declaration of something on global scope, in C/C++ source files.
 
-Works on Linux, Windows, port to other operating systems is probably straightforward.
+Works on Linux, Windows, using gcc. Port to other compilers or operating systems is probably easy.
 
 Source under [MIT license](./LICENSE).
 
 ### Compilation
 
-Requires gcc. Works probably on other compiler as well.
 ```
    gcc funfind.c -o funfind
 ```
