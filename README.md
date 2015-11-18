@@ -1,9 +1,13 @@
 ## funfind
-Show the definition or declaration of a function (and other stuff on global scope) in C/C++ source files.
+Very simple command-line program displaying the definition or the declaration of something on global scope, in C/C++ source files.
+
+Works on Linux, Windows, port to other operating systems is probably straightforward.
 
 Source under [MIT license](./LICENSE).
 
 ### Compilation
+
+Requires gcc. Works probably on other compiler as well.
 ```
    gcc funfind.c -o funfind
 ```
@@ -13,12 +17,30 @@ Source under [MIT license](./LICENSE).
 ```
    funfind <pattern> <file-1> [<file-2> [...]]
 
-   funfind processFile foo.c foo.h  # show the processFile function in foo.c or foo.h
-   funfind void foo.c               # show functions returning void or having parameters with void in it
-   funfind main foo.c               # show the main function in foo.c
-   funfind "main(int argc" foo.c    # show the main function in foo.c (but only if it matches this pattern)
-   funfind typedef foo.c            # show all typedefs on the global scope
-   funfind "class Bar" foo.h        # show the Bar class definition/declaration (if it is on the global scope)
+   # show the main function in foo.c
+   funfind main foo.c         
+   
+   ---> will display for example:
+       int main(int argc, char* argv[])
+       {
+         printf("Hello world\n");
+         return 0;
+       }
+   
+   # show the processFile function in foo.c or foo.h
+   funfind processFile foo.c foo.h  
+   
+   # show functions returning void or having parameters with void in it
+   funfind void foo.c
+   
+   # show the main function in foo.c (but only if it matches this pattern)
+   funfind "main(int argc" foo.c    
+   
+   # show all typedefs on the global scope
+   funfind typedef foo.c            
+   
+   # show the Bar class definition/declaration (if it is on the global scope)
+   funfind "class Bar" foo.h
 ```
 
 ### Bugs
