@@ -11,11 +11,14 @@ Source under [MIT license](./LICENSE).
    gcc funfind.c -o funfind
 ```
 
-### Syntax and examples
-
+### Syntax
 ```
    funfind <pattern> <file-1> [<file-2> [...]]
+```
+Basically, *pattern* must be a part (or the entirety) of what is before the first bracket (or the semicolon, whatever comes first).
 
+### Examples
+```
    # show the main function in foo.c
    funfind main foo.c         
    
@@ -29,7 +32,7 @@ Source under [MIT license](./LICENSE).
    # show the processFile function in foo.c or foo.h
    funfind processFile foo.c foo.h  
    
-   # show functions returning void or having parameters with void or voidOfTheUniverse in it
+   # show functions returning void or having parameters with void (or voidOfTheUniverse) in it
    funfind void foo.c
    
    # show the main function in foo.c (but only if it matches this pattern)
@@ -38,7 +41,7 @@ Source under [MIT license](./LICENSE).
    # show all typedefs on the global scope
    funfind typedef foo.c            
    
-   # show the Bar class definition/declaration (if it is on the global scope)
+   # show the Bar class definition/declaration (if it is not a nested class)
    funfind "class Bar" foo.h
 ```
 
