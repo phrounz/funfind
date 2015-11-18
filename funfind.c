@@ -69,17 +69,17 @@ int processFile(char* pattern, char* filename, boolean file_is_alone)
     }
 
     if (c=='/' && c2=='*' && !in_quotation_marks && !in_quotation_marks2)
-	   in_comment=1;
+	   in_comment = 1;
     else if (c=='*' && c2=='/')
-		  in_comment=0;
+		  in_comment = 0;
     else if (c=='/' && c2=='/' && !in_quotation_marks && !in_quotation_marks2)
-		  file_pos=nextLine(c2,fd,file_size,in_function);
+		  file_pos = nextLine(c2,fd,file_size,in_function);
     else if (c=='"' && !in_comment && !in_quotation_marks2)
       in_quotation_marks = !in_quotation_marks;
     else if (c=='\'' && !in_comment && !in_quotation_marks)
 		  in_quotation_marks2 = !in_quotation_marks2;
     else if (c=='#' && !in_comment && !in_quotation_marks && !in_quotation_marks2)
-		  file_pos=nextLine(c2,fd,file_size,in_function);
+		  file_pos = nextLine(c2,fd,file_size,in_function);
 
     if (!in_comment && !in_quotation_marks && !in_quotation_marks2)
     {
@@ -105,14 +105,15 @@ int processFile(char* pattern, char* filename, boolean file_is_alone)
   		    }
 
   		    fseek(fd,1,SEEK_CUR);
-    		  while(tmp!='\n')
+    		  while(tmp!='\n') // back to the beginning of the line
     	    {
+            if ((unsigned)ftell(fd)<=1) {fseek(fd,-1,SEEK_CUR);break;}
     	      fseek(fd,-2,SEEK_CUR);
     	      fread(&tmp,1,sizeof(char),fd);
-    	      i++;
+            i++;
     	    }
 
-          while((unsigned)ftell(fd)<file_pos+1)
+          while((unsigned)ftell(fd)<file_pos+1) //show the beginning of the line
   		    {
   		      fread(&tmp,1,sizeof(char),fd);
   		      printf("%c",tmp);
@@ -121,7 +122,7 @@ int processFile(char* pattern, char* filename, boolean file_is_alone)
   		  }
       }
 
-  	  if (c==';' && nb_brackets==0 && in_function)
+  	  if (c==';' && nb_brackets==0 && in_function) // find a ';' closing the function
       {
         printf("\n");
         in_function=0;
